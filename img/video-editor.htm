@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><meta charset="UTF-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(){this.triggerEvents=["keydown","mousedown","mousemove","touchmove","touchstart","touchend","wheel"],this.userEventHandler=this._triggerListener.bind(this),this.touchStartHandler=this._onTouchStart.bind(this),this.touchMoveHandler=this._onTouchMove.bind(this),this.touchEndHandler=this._onTouchEnd.bind(this),this.clickHandler=this._onClick.bind(this),this.interceptedClicks=[],window.addEventListener("pageshow",(e=>{this.persisted=e.persisted})),window.addEventListener("DOMContentLoaded",(()=>{this._preconnect3rdParties()})),this.delayedScripts={normal:[],async:[],defer:[]},this.allJQueries=[]}_addUserInteractionListener(e){document.hidden?e._triggerListener():(this.triggerEvents.forEach((t=>window.addEventListener(t,e.userEventHandler,{passive:!0}))),window.addEventListener("touchstart",e.touchStartHandler,{passive:!0}),window.addEventListener("mousedown",e.touchStartHandler),document.addEventListener("visibilitychange",e.userEventHandler))}_removeUserInteractionListener(){this.triggerEvents.forEach((e=>window.removeEventListener(e,this.userEventHandler,{passive:!0}))),document.removeEventListener("visibilitychange",this.userEventHandler)}_onTouchStart(e){"HTML"!==e.target.tagName&&(window.addEventListener("touchend",this.touchEndHandler),window.addEventListener("mouseup",this.touchEndHandler),window.addEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.addEventListener("mousemove",this.touchMoveHandler),e.target.addEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"onclick","rocket-onclick"))}_onTouchMove(e){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler),e.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"rocket-onclick","onclick")}_onTouchEnd(e){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler)}_onClick(e){e.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"rocket-onclick","onclick"),this.interceptedClicks.push(e),e.preventDefault(),e.stopPropagation(),e.stopImmediatePropagation()}_replayClicks(){window.removeEventListener("touchstart",this.touchStartHandler,{passive:!0}),window.removeEventListener("mousedown",this.touchStartHandler),this.interceptedClicks.forEach((e=>{e.target.dispatchEvent(new MouseEvent("click",{view:e.view,bubbles:!0,cancelable:!0}))}))}_renameDOMAttribute(e,t,n){e.hasAttribute&&e.hasAttribute(t)&&(event.target.setAttribute(n,event.target.getAttribute(t)),event.target.removeAttribute(t))}_triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}_preconnect3rdParties(){let e=[];document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((t=>{if(t.hasAttribute("src")){const n=new URL(t.src).origin;n!==location.origin&&e.push({src:n,crossOrigin:t.crossOrigin||"module"===t.getAttribute("data-rocket-type")})}})),e=[...new Map(e.map((e=>[JSON.stringify(e),e]))).values()],this._batchInjectResourceHints(e,"preconnect")}async _loadEverythingNow(){this.lastBreath=Date.now(),this._delayEventListeners(),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async);try{await this._triggerDOMContentLoaded(),await this._triggerWindowLoad()}catch(e){}window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this._replayClicks()}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((e=>{e.hasAttribute("src")?e.hasAttribute("async")&&!1!==e.async?this.delayedScripts.async.push(e):e.hasAttribute("defer")&&!1!==e.defer||"module"===e.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(e):this.delayedScripts.normal.push(e):this.delayedScripts.normal.push(e)}))}async _transformScript(e){return await this._littleBreath(),new Promise((t=>{const n=document.createElement("script");[...e.attributes].forEach((e=>{let t=e.nodeName;"type"!==t&&("data-rocket-type"===t&&(t="type"),n.setAttribute(t,e.nodeValue))})),e.hasAttribute("src")?(n.addEventListener("load",t),n.addEventListener("error",t)):(n.text=e.text,t());try{e.parentNode.replaceChild(n,e)}catch(e){t()}}))}async _loadScriptsFromList(e){const t=e.shift();return t?(await this._transformScript(t),this._loadScriptsFromList(e)):Promise.resolve()}_preloadAllScripts(){this._batchInjectResourceHints([...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async],"preload")}_batchInjectResourceHints(e,t){var n=document.createDocumentFragment();e.forEach((e=>{if(e.src){const i=document.createElement("link");i.href=e.src,i.rel=t,"preconnect"!==t&&(i.as="script"),e.getAttribute&&"module"===e.getAttribute("data-rocket-type")&&(i.crossOrigin=!0),e.crossOrigin&&(i.crossOrigin=e.crossOrigin),n.appendChild(i)}})),document.head.appendChild(n)}_delayEventListeners(){let e={};function t(t,n){!function(t){function n(n){return e[t].eventsToRewrite.indexOf(n)>=0?"rocket-"+n:n}e[t]||(e[t]={originalFunctions:{add:t.addEventListener,remove:t.removeEventListener},eventsToRewrite:[]},t.addEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.add.apply(t,arguments)},t.removeEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.remove.apply(t,arguments)})}(t),e[t].eventsToRewrite.push(n)}function n(e,t){let n=e[t];Object.defineProperty(e,t,{get:()=>n||function(){},set(i){e["rocket"+t]=n=i}})}t(document,"DOMContentLoaded"),t(window,"DOMContentLoaded"),t(window,"load"),t(window,"pageshow"),t(document,"readystatechange"),n(document,"onreadystatechange"),n(window,"onload"),n(window,"onpageshow")}_delayJQueryReady(e){let t=window.jQuery;Object.defineProperty(window,"jQuery",{get:()=>t,set(n){if(n&&n.fn&&!e.allJQueries.includes(n)){n.fn.ready=n.fn.init.prototype.ready=function(t){e.domReadyFired?t.bind(document)(n):document.addEventListener("rocket-DOMContentLoaded",(()=>t.bind(document)(n)))};const t=n.fn.on;n.fn.on=n.fn.init.prototype.on=function(){if(this[0]===window){function e(e){return e.split(" ").map((e=>"load"===e||0===e.indexOf("load.")?"rocket-jquery-load":e)).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=e(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach((t=>{delete Object.assign(arguments[0],{[e(t)]:arguments[0][t]})[t]}))}return t.apply(this,arguments),this},e.allJQueries.push(n)}t=n}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._littleBreath(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._littleBreath(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._littleBreath(),window.dispatchEvent(new Event("rocket-load")),await this._littleBreath(),window.rocketonload&&window.rocketonload(),await this._littleBreath(),this.allJQueries.forEach((e=>e(window).trigger("rocket-jquery-load"))),await this._littleBreath();const e=new Event("rocket-pageshow");e.persisted=this.persisted,window.dispatchEvent(e),await this._littleBreath(),window.rocketonpageshow&&window.rocketonpageshow({persisted:this.persisted})}_handleDocumentWrite(){const e=new Map;document.write=document.writeln=function(t){const n=document.currentScript,i=document.createRange(),r=n.parentElement;let o=e.get(n);void 0===o&&(o=n.nextSibling,e.set(n,o));const s=document.createDocumentFragment();i.setStart(s,0),s.appendChild(i.createContextualFragment(t)),r.insertBefore(s,o)}}async _littleBreath(){Date.now()-this.lastBreath>45&&(await this._requestAnimFrame(),this.lastBreath=Date.now())}async _requestAnimFrame(){return document.hidden?new Promise((e=>setTimeout(e))):new Promise((e=>requestAnimationFrame(e)))}static run(){const e=new RocketLazyLoadScripts;e._addUserInteractionListener(e)}}RocketLazyLoadScripts.run();</script>
+    
+    <meta http-equiv="Content-Security-Policy" content="frame-src https://*.facebook.com https://*.youtube.com https://*.zalo.me;">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+    <link rel="pingback" href="https://diemnhan.com/xmlrpc.php">
+    <link rel="preload" href="https://diemnhan.com/wp-content/themes/diem-nhan/assets/fonts/INTER-REGULAR.ttf" as="font" type="font/woff2" crossorigin="anonymous" font-display="swap">
+    <link rel="preload" href="https://diemnhan.com/wp-content/themes/diem-nhan/assets/fonts/INTER-BOLD.ttf" as="font" type="font/woff2" crossorigin="anonymous" font-display="swap">
+    <link rel="preload" href="https://diemnhan.com/wp-content/themes/diem-nhan/assets/fonts/INTER-SEMIBOLD.ttf" as="font" type="font/woff2" crossorigin="anonymous" font-display="swap">
+
+    <style>
+        @font-face {
+            font-family: inter;
+            src: url('https://diemnhan.com/wp-content/themes/diem-nhan/assets/fonts/INTER-REGULAR.ttf');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: inter;
+            src: url('https://diemnhan.com/wp-content/themes/diem-nhan/assets/fonts/Inter-600.ttf');
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: inter;
+            src: url('https://diemnhan.com/wp-content/themes/diem-nhan/assets/fonts/INTER-BOLD.ttf');
+            font-weight: bold;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: inter;
+            src: url('https://diemnhan.com/wp-content/themes/diem-nhan/assets/fonts/INTER-SEMIBOLD.ttf');
+            font-weight: 900;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        *{
+            font-family: inter;
+        }
+    </style>
+    <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	<!-- This site is optimized with the Yoast SEO plugin v20.2.1 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>VIDEO EDITOR &raquo; Công Ty Cổ Phần Công Nghệ DNG</title>
+	<link rel="canonical" href="https://diemnhan.com/tuyen-dung/video-editor/" />
+	<meta property="og:locale" content="vi_VN" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="VIDEO EDITOR &raquo; Công Ty Cổ Phần Công Nghệ DNG" />
+	<meta property="og:description" content="I/ Nội dung công việc Dựng các video clip, hỗ trợ quay dựng các liệu trình, các buổi ghi hình trực tiếp và các sự kiện nội bộ của công ty. Hỗ trợ chỉnh sửa, xử lý cắt ghép, biên tập (cân bằng tiếng, hình ảnh, âm thanh&#8230;) video để phục vụ cho các chiến [&hellip;]" />
+	<meta property="og:url" content="https://diemnhan.com/tuyen-dung/video-editor/" />
+	<meta property="og:site_name" content="Công Ty Cổ Phần Công Nghệ DNG" />
+	<meta property="article:modified_time" content="2022-10-05T03:40:27+00:00" />
+	<meta property="og:image" content="https://cdn.diemnhangroup.com/diemnhan/2021/10/profesi-video-editor-626-x-626-px.png" />
+	<meta property="og:image:width" content="626" />
+	<meta property="og:image:height" content="626" />
+	<meta property="og:image:type" content="image/png" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:label1" content="Ước tính thời gian đọc" />
+	<meta name="twitter:data1" content="2 phút" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://diemnhan.com/tuyen-dung/video-editor/","url":"https://diemnhan.com/tuyen-dung/video-editor/","name":"VIDEO EDITOR &raquo; Công Ty Cổ Phần Công Nghệ DNG","isPartOf":{"@id":"https://diemnhan.com/#website"},"primaryImageOfPage":{"@id":"https://diemnhan.com/tuyen-dung/video-editor/#primaryimage"},"image":{"@id":"https://diemnhan.com/tuyen-dung/video-editor/#primaryimage"},"thumbnailUrl":"https://cdn.diemnhangroup.com/diemnhan/2021/10/profesi-video-editor-626-x-626-px.png","datePublished":"2021-10-27T04:24:03+00:00","dateModified":"2022-10-05T03:40:27+00:00","breadcrumb":{"@id":"https://diemnhan.com/tuyen-dung/video-editor/#breadcrumb"},"inLanguage":"vi","potentialAction":[{"@type":"ReadAction","target":["https://diemnhan.com/tuyen-dung/video-editor/"]}]},{"@type":"ImageObject","inLanguage":"vi","@id":"https://diemnhan.com/tuyen-dung/video-editor/#primaryimage","url":"https://cdn.diemnhangroup.com/diemnhan/2021/10/profesi-video-editor-626-x-626-px.png","contentUrl":"https://cdn.diemnhangroup.com/diemnhan/2021/10/profesi-video-editor-626-x-626-px.png","width":626,"height":626},{"@type":"BreadcrumbList","@id":"https://diemnhan.com/tuyen-dung/video-editor/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://diemnhan.com/"},{"@type":"ListItem","position":2,"name":"Portfolio","item":"https://diemnhan.com/featured_item/"},{"@type":"ListItem","position":3,"name":"VIDEO EDITOR"}]},{"@type":"WebSite","@id":"https://diemnhan.com/#website","url":"https://diemnhan.com/","name":"Công Ty Cổ Phần Công Nghệ DNG","description":"Công Ty Cổ Phần Công Nghệ DNG","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://diemnhan.com/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"vi"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//unpkg.com' />
+<link rel='dns-prefetch' href='//fonts.gstatic.com,' />
+<link rel='dns-prefetch' href='//diemnhan.com' />
+
+<link rel="alternate" type="application/rss+xml" title="Dòng thông tin Công Ty Cổ Phần Công Nghệ DNG &raquo;" href="https://diemnhan.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Dòng phản hồi Công Ty Cổ Phần Công Nghệ DNG &raquo;" href="https://diemnhan.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Công Ty Cổ Phần Công Nghệ DNG &raquo; VIDEO EDITOR Dòng phản hồi" href="https://diemnhan.com/tuyen-dung/video-editor/feed/" />
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='https://diemnhan.com/wp-includes/css/dist/block-library/style.min.css?ver=6.0' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-components-css'  href='https://diemnhan.com/wp-includes/css/dist/components/style.min.css?ver=6.0' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-block-editor-css'  href='https://diemnhan.com/wp-includes/css/dist/block-editor/style.min.css?ver=6.0' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-nux-css'  href='https://diemnhan.com/wp-includes/css/dist/nux/style.min.css?ver=6.0' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-reusable-blocks-css'  href='https://diemnhan.com/wp-includes/css/dist/reusable-blocks/style.min.css?ver=6.0' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-editor-css'  href='https://diemnhan.com/wp-includes/css/dist/editor/style.min.css?ver=6.0' type='text/css' media='all' />
+<link data-minify="1" rel='stylesheet' id='mux_video_block_style-css'  href='https://diemnhan.com/wp-content/cache/min/1/wp-content/plugins/ilab-media-tools-premium/public/blocks/mediacloud-mux.blocks.style.css?ver=1695283235' type='text/css' media='all' />
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+</style>
+<link rel='stylesheet' id='bootstrap-css'  href='https://diemnhan.com/wp-content/themes/diem-nhan/assets/css/global/bootstrap.min.css?ver=6.0' type='text/css' media='all' />
+<link data-minify="1" rel='stylesheet' id='flickity-css'  href='https://diemnhan.com/wp-content/cache/min/1/flickity@2/dist/flickity.min.css?ver=1695283235' type='text/css' media='all' />
+<link data-minify="1" rel='stylesheet' id='global-css'  href='https://diemnhan.com/wp-content/cache/min/1/wp-content/themes/diem-nhan/assets/css/global/global.css?ver=1695283235' type='text/css' media='all' />
+<link data-minify="1" rel='stylesheet' id='human-resources-css'  href='https://diemnhan.com/wp-content/cache/min/1/wp-content/themes/diem-nhan/assets/css/templates/human-resources.css?ver=1695283312' type='text/css' media='all' />
+<style id='rocket-lazyload-inline-css' type='text/css'>
+.rll-youtube-player{position:relative;padding-bottom:56.23%;height:0;overflow:hidden;max-width:100%;}.rll-youtube-player:focus-within{outline: 2px solid currentColor;outline-offset: 5px;}.rll-youtube-player iframe{position:absolute;top:0;left:0;width:100%;height:100%;z-index:100;background:0 0}.rll-youtube-player img{bottom:0;display:block;left:0;margin:auto;max-width:100%;width:100%;position:absolute;right:0;top:0;border:none;height:auto;-webkit-transition:.4s all;-moz-transition:.4s all;transition:.4s all}.rll-youtube-player img:hover{-webkit-filter:brightness(75%)}.rll-youtube-player .play{height:100%;width:100%;left:0;top:0;position:absolute;background:url(https://diemnhan.com/wp-content/plugins/wp-rocket/assets/img/youtube.png) no-repeat center;background-color: transparent !important;cursor:pointer;border:none;}.wp-embed-responsive .wp-has-aspect-ratio .rll-youtube-player{position:absolute;padding-bottom:0;width:100%;height:100%;top:0;bottom:0;left:0;right:0}
+</style>
+<script type='text/javascript' src='https://diemnhan.com/wp-content/themes/diem-nhan/assets/js/global/angular.min.js?ver=all' id='angularjs-js'></script>
+<script data-minify="1" type='text/javascript' src='https://diemnhan.com/wp-content/cache/min/1/wp-content/themes/diem-nhan/assets/js/templates/human-resources.js?ver=1695283312' id='human-resources-js'></script>
+<script data-minify="1" type='text/javascript' src='https://diemnhan.com/wp-content/cache/min/1/flickity@2/dist/flickity.pkgd.min.js?ver=1695283236' id='flickity-pkgd-js-js'></script>
+<script type='text/javascript' src='https://diemnhan.com/wp-content/themes/diem-nhan/assets/js/global/bootstrap.min.js?ver=all' id='bootstrap-min-js'></script>
+<script type='text/javascript' src='https://diemnhan.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://diemnhan.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<script type='text/javascript' id='global-js-extra'>
+/* <![CDATA[ */
+var siteConfig = {"homeUrl":"https:\/\/diemnhan.com\/","ajaxUrl":"https:\/\/diemnhan.com\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script data-minify="1" type='text/javascript' src='https://diemnhan.com/wp-content/cache/min/1/wp-content/themes/diem-nhan/assets/js/global.js?ver=1695283236' id='global-js'></script>
+<link rel="https://api.w.org/" href="https://diemnhan.com/wp-json/" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://diemnhan.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://diemnhan.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 6.0" />
+<link rel='shortlink' href='https://diemnhan.com/?p=3950' />
+<link rel="alternate" type="application/json+oembed" href="https://diemnhan.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdiemnhan.com%2Ftuyen-dung%2Fvideo-editor" />
+<link rel="alternate" type="text/xml+oembed" href="https://diemnhan.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdiemnhan.com%2Ftuyen-dung%2Fvideo-editor&#038;format=xml" />
+<link rel="icon" href="https://cdn.diemnhangroup.com/diemnhan/2020/06/cropped-factico-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://cdn.diemnhangroup.com/diemnhan/2020/06/cropped-factico-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://cdn.diemnhangroup.com/diemnhan/2020/06/cropped-factico-180x180.png" />
+<meta name="msapplication-TileImage" content="https://cdn.diemnhangroup.com/diemnhan/2020/06/cropped-factico-270x270.png" />
+		<style type="text/css" id="wp-custom-css">
+			.menu-item-6708 a{position:absolute;left:-2921px;}
+.menu-item-6709 a{position:absolute;left:-2921px;}
+.menu-item-6710 a{position:absolute;left:-2921px;}
+.menu-item-6711 a{position:absolute;left:-2921px;}
+#footer .c-box iframe {
+    height: 140px;
+}
+section.team-leader-3 .title--team {
+    min-height: 180px;
+}
+@media only screen and (max-width: 550px){
+	section.team-leader-3 .title--team {
+			min-height: 146px;
+	}
+}
+@media only screen and (max-width: 768px){
+section.team-leader-3 .row:last-child {
+    row-gap: 10px;
+}
+}
+.align-right .item .image img {
+	border-radius: 160px 160px 0 0;
+}
+#header {
+	    z-index: 9999;
+}		</style>
+		<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript></head>
+<body class="featured_item-template-default single single-featured_item postid-3950 wp-embed-responsive">
+    <header id="header" class="header-main">
+    <div class="container text-center">
+        <div class="s-h-box">
+            <div class="s-box-img">
+                <a href="https://diemnhan.com">
+                    <img src="https://diemnhan.com/wp-content/themes/diem-nhan/assets/images/dng-logo.png" alt="logo-main">
+                </a>
+            </div>
+            <div class="s-box-nav">
+                    <div class="menu-main-menu-container"><ul id="menu-main-menu" class="menu--main"><li id="menu-item-6321" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-6321"><a href="#">Giới Thiệu</a>
+<ul class="sub-menu">
+	<li id="menu-item-60" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60"><a href="https://diemnhan.com/gioi-thieu">Về Điểm Nhấn Group</a></li>
+	<li id="menu-item-3555" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3555"><a href="https://diemnhan.com/doi-ngu-lanh-dao">Đội Ngũ Lãnh đạo</a></li>
+</ul>
+</li>
+<li id="menu-item-6271" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6271"><a href="https://diemnhan.com/thuong-hieu">Thương Hiệu</a></li>
+<li id="menu-item-6285" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-6285"><a href="#">Câu chuyện DNG</a>
+<ul class="sub-menu">
+	<li id="menu-item-6286" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6286"><a href="https://diemnhan.com/hoat-dong-thien-nguyen">Thiện Nguyện &#8211; Trái Tim Điểm Nhấn</a></li>
+	<li id="menu-item-6331" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6331"><a href="https://diemnhan.com/tin-cong-ty">Văn Hóa DNG</a></li>
+	<li id="menu-item-6332" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6332"><a href="https://diemnhan.com/tin-tuc">Niềm Tin Khách Hàng</a></li>
+</ul>
+</li>
+<li id="menu-item-6287" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-6287"><a href="https://diemnhan.com/co-hoi-nghe-nghiep">Cơ Hội Việc Làm</a>
+<ul class="sub-menu">
+	<li id="menu-item-6273" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6273"><a href="https://diemnhan.com/ket-qua-phong-van">Kết Quả Ứng Tuyển</a></li>
+</ul>
+</li>
+<li id="menu-item-6575" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6575"><a href="https://diemnhan.com/thu-vien">Thư Viện</a></li>
+<li id="menu-item-6288" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6288"><a href="https://diemnhan.com/lien-he">Liên hệ</a></li>
+<li id="menu-item-6708" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6708"><a href="https://www.replicauhrende.to/">uhren replica</a></li>
+<li id="menu-item-6709" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6709"><a href="https://www.replicahorloges.cc/">replica horloges</a></li>
+<li id="menu-item-6710" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6710"><a href="https://www.replicawatchesuk.to/">replica watches</a></li>
+<li id="menu-item-6711" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6711"><a href="https://www.replicheorologi.it/">replica orologi</a></li>
+</ul></div>                <div class="bsearch">
+                    <div class="box-search">
+                        <i class="i- i--dng-icon-_6_"></i>
+                    </div>
+                    <div class="bsa-search">
+                        <form id="searchform" role="form" method="get" class="search-form" action="/">
+    <input id="keywords" type="text" class="search-field search-ajax" autocomplete="off" placeholder="Nhập từ khóa tìm kiếm..." value="" name="s" title="Tìm kiếm">
+    <input type="hidden" name="post_type[]" value="post">
+    <div class="f-icon">
+       <img src="https://diemnhan.com/wp-content/uploads/diemnhan/2023/03/search.png" alt="">
+    </div>
+</form>
+<div class="img-load-ajax"></div>
+<div id="load-data" class="post__list">
+    <ul></ul>
+</div>                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>    <main class=""><div class="container human-resources-post">
+    <div class="row justify-content-center mb-3 pt-3">
+        <div class="col-md-12">
+            <div class="p-1 p-sm-3 card shadow-0 border rounded-3">
+                <div class="p-0 card-body">
+                    <div class="row">
+                        <div class="col-3 col-md-3 col-lg-3 mb-4 mb-lg-0">
+                            <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                                <a href="https://diemnhan.com/tuyen-dung/video-editor" title="VIDEO EDITOR"><img width="626" height="626" src="https://cdn.diemnhangroup.com/diemnhan/2021/10/profesi-video-editor-626-x-626-px.png" class="w-100" alt="&#039;.get_the_title().&#039;" loading="lazy" srcset="https://cdn.diemnhangroup.com/diemnhan/2021/10/profesi-video-editor-626-x-626-px-300x300.png 300w, https://cdn.diemnhangroup.com/diemnhan/2021/10/profesi-video-editor-626-x-626-px-150x150.png 150w, https://cdn.diemnhangroup.com/diemnhan/2021/10/profesi-video-editor-626-x-626-px.png 626w" sizes="(max-width: 626px) 100vw, 626px" />                                </a>
+                            </div>
+                        </div>
+                        <div class="col-9 col-md-6 col-lg-6">
+                            <h4 class="d-inline title">
+                                <a href="https://diemnhan.com/tuyen-dung/video-editor" title="VIDEO EDITOR">VIDEO EDITOR</a>
+                            </h4>
+                            <span class="d-inline dng-bookmark"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
+                                    <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z" />
+                                </svg>&nbsp;Full Time</span>
+                            <div class="mt-1 mb-0 text-muted small">
+                                <span class="dng-block-item position">(1 Vị trí)</span>&nbsp;
+                                <span class="dng-block-item wage"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                                        <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z" />
+                                    </svg>&nbsp;10.000.000-15.000.000</span>&nbsp;&nbsp;
+                                <span class="dng-block-item date"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                                    </svg>&nbsp;31-10-2022</span>
+                            </div>
+                        </div>
+                        <div class="d-none d-sm-block col-md-3 col-lg-3">
+                            <div class="d-flex justify-content-center align-items-center block-submit-cv">
+                                <a class="btn btn-primary btn-sm read-more btn-submit-cv-details text-white" href="/dang-ho-so">Nộp hồ sơ</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-12 col-sm-8 col-xs-12">
+            <div class="card shadow-0 border rounded-3">
+                <div class="card-body">
+                    <h3><strong><u><b>I/ Nội dung công việc</b></u></strong></h3>
+<ul>
+<li>Dựng các video clip, hỗ trợ quay dựng các liệu trình, các buổi ghi hình trực tiếp và các sự kiện nội bộ của công ty.</li>
+<li>Hỗ trợ chỉnh sửa, xử lý cắt ghép, biên tập (cân bằng tiếng, hình ảnh, âm thanh&#8230;) video để phục vụ<br />
+cho các chiến dịch PR, Marketing theo yêu cầu của công ty.</li>
+<li>Xây dựng ý tưởng theo yêu sản phẩm và yêu cầu của các phòng ban.</li>
+<li>Đề xuất các tiêu chuẩn về mặt thiết kế để đảm bảo tính thẩm mỹ và sự nhất quán trong hình ảnh<br />
+thương hiệu.</li>
+<li>Quản lý và lưu trữ các video clip thiết kế.</li>
+<li>Phối hợp với các phòng ban khác để xử lý công việc theo yêu cầu của cấp trên.</li>
+</ul>
+<h3><strong><u><b>II/ </b></u></strong><strong><u><b>Yêu cầu công việc</b></u></strong></h3>
+<ul>
+<li>Ưu tiên tốt nghiệp các trường: ĐH Kiến Trúc, Arena, ĐH FPT&#8230;</li>
+<li>Có ít nhất 1 năm kinh nghiệm trong lĩnh vực tương đương.</li>
+<li>Ưu tiên am hiểu các phần mềm dựng phim như Adobe Premiere, Adobe After Effect, Audition,…</li>
+<li>Có khả năng tư duy thẩm mỹ, tham gia dựng và sáng tạo các clip sản phẩm, phim do công ty sản xuất<br />
+hoặc đầu tư sản xuất.</li>
+<li>Sáng tạo, giao tiếp tốt, có khả năng làm việc độc lập cũng như tinh thần làm việc theo nhóm.</li>
+</ul>
+<h3><strong><u><b>III/ </b></u></strong><strong><u><b>Quyền</b></u></strong><strong><u><b> lợi</b></u></strong></h3>
+<ul>
+<li>Mức lương: 10.000.000 – 15.000.000/tháng, tùy theo năng lực.</li>
+<li>Được đào tạo, bồi dưỡng thường xuyên các kỹ năng nghiệp vụ.</li>
+<li>Môi trường làm việc trẻ trung, năng động, thân thiện.</li>
+<li>Hưởng các chính sách đãi ngộ của Công ty.</li>
+<li>Tham gia các buổi dã ngoại, du lịch hằng năm.</li>
+</ul>
+<h3><strong><u><b>IV/</b></u></strong><strong><u><b> </b></u></strong><strong><u><b>Thông</b></u></strong><strong><u><b> tin chung</b></u></strong></h3>
+<ul>
+<li>Làm việc từ Thứ 2 – Thứ 6: 8h00 &#8211; 17h30, Thứ 7: 8h00 &#8211; 12h00.</li>
+<li>Địa chỉ làm việc: 33C Nguyễn Háo Vĩnh, phường Tân Quý, quận Tân Phú.</li>
+<li>Hồ sơ xin việc bao gồm: Đơn xin việc, Sơ yếu lý lịch, CMND, Hộ khẩu photo, Các bằng cấp liên quan.</li>
+</ul>
+                    <!--Offices-->
+                    <div class="chi-nhanh-tuyen-dung hidden-cl store-recruit">
+        <hr>
+    <h4 class="head">Danh sách chi nhánh tuyển</h4>
+    <ul class ="lisst-store-fonte" style ="column-count: 3; font-size: .9em;"><li><a href = "https://www.google.com/maps/place/84+Nguy%E1%BB%85n+H%C3%A1o+V%C4%A9nh,+T%C3%A2n+Qu%C3%BD,+T%C3%A2n+Ph%C3%BA,+Th%C3%A0nh+ph%E1%BB%91+H%E1%BB%93+Ch%C3%AD+Minh,+Vi%E1%BB%87t+Nam/@10.7958494,106.6255245,18.29z/data=!4m5!3m4!1s0x31752bff192e2b57:0x666b15f508ea907f!8m2!3d10.7956285!4d106.6249391"><i class="fa fa-caret-right" aria-hidden="true"></i> Tân Phú </a></li><li><ul></ul></li><li><ul></ul></li><li><ul></ul></li><li><ul></ul></li><li><ul></ul></li><li><ul></ul></li></ul></div>                    <!--//Offices-->
+                </div>
+            </div>
+            <!--Jobs related-->
+            <hr>
+<div class="card shadow-0 border rounded-3">
+    <div class="card-body">
+        <div class="viec-lam-tuong-tu">
+            <h2>Việc làm tương tự </h2>        
+                <!--Loop-->
+                <div class="card shadow-0 border-0 rounded-3 mb-3">
+                    <div class="p-1 p-sm-2 p-md-3 card-body">
+                        <div class="row">
+                            <div class="col-3 col-md-3 col-lg-3 mb-4 mb-lg-0">
+                                <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                                    <a href="https://diemnhan.com/tuyen-dung/chuyen-vien-seo" title="CHUYÊN VIÊN SEO"><img width="512" height="354" src="https://cdn.diemnhangroup.com/diemnhan/2020/08/nhan-vien-seo.jpg" class="w-100" alt="&#039;.get_the_title().&#039;" loading="lazy" srcset="https://cdn.diemnhangroup.com/diemnhan/2020/08/nhan-vien-seo-300x207.jpg 300w, https://cdn.diemnhangroup.com/diemnhan/2020/08/nhan-vien-seo.jpg 512w" sizes="(max-width: 512px) 100vw, 512px" />                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-9 col-md-6 col-lg-6">
+                                <h4 class="d-inline title">
+                                    <a href="https://diemnhan.com/tuyen-dung/chuyen-vien-seo" title="CHUYÊN VIÊN SEO">CHUYÊN VIÊN SEO</a>
+                                </h4>
+                                <span class="d-inline dng-bookmark"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
+                                        <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z" />
+                                    </svg>&nbsp;Full Time</span>
+                                <div class="mt-1 mb-0 text-muted small">
+                                    <span class="dng-block-item position">(2 Vị trí)</span>&nbsp;
+                                    <span class="dng-block-item wage"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                                            <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z" />
+                                        </svg>&nbsp;8.000.000 – 15.000.000</span>&nbsp;&nbsp;
+                                    <span class="dng-block-item date"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                                        </svg>&nbsp;30-09-2023</span>
+                                </div>
+                            </div>
+                            <div class="d-none d-sm-block col-md-3 col-lg-3">
+                                <div class="d-flex flex-column">
+                                    <a class="btn btn-primary btn-sm read-more effect effect-2 border-0" href="https://diemnhan.com/tuyen-dung/chuyen-vien-seo" title="CHUYÊN VIÊN SEO">Xem chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--//Loop-->
+                
+                <!--Loop-->
+                <div class="card shadow-0 border-0 rounded-3 mb-3">
+                    <div class="p-1 p-sm-2 p-md-3 card-body">
+                        <div class="row">
+                            <div class="col-3 col-md-3 col-lg-3 mb-4 mb-lg-0">
+                                <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                                    <a href="https://diemnhan.com/tuyen-dung/nhan-vien-media" title="CHUYÊN VIÊN MEDIA"><img width="550" height="365" src="https://cdn.diemnhangroup.com/diemnhan/2020/09/DIGITAL-MEDIA.jpeg" class="w-100" alt="&#039;.get_the_title().&#039;" loading="lazy" srcset="https://cdn.diemnhangroup.com/diemnhan/2020/09/DIGITAL-MEDIA-300x199.jpeg 300w, https://cdn.diemnhangroup.com/diemnhan/2020/09/DIGITAL-MEDIA.jpeg 550w" sizes="(max-width: 550px) 100vw, 550px" />                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-9 col-md-6 col-lg-6">
+                                <h4 class="d-inline title">
+                                    <a href="https://diemnhan.com/tuyen-dung/nhan-vien-media" title="CHUYÊN VIÊN MEDIA">CHUYÊN VIÊN MEDIA</a>
+                                </h4>
+                                <span class="d-inline dng-bookmark"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
+                                        <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z" />
+                                    </svg>&nbsp;Full Time</span>
+                                <div class="mt-1 mb-0 text-muted small">
+                                    <span class="dng-block-item position">(4 Vị trí)</span>&nbsp;
+                                    <span class="dng-block-item wage"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                                            <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z" />
+                                        </svg>&nbsp;8.000.000 – 15.000.000</span>&nbsp;&nbsp;
+                                    <span class="dng-block-item date"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                                        </svg>&nbsp;30-09-2023</span>
+                                </div>
+                            </div>
+                            <div class="d-none d-sm-block col-md-3 col-lg-3">
+                                <div class="d-flex flex-column">
+                                    <a class="btn btn-primary btn-sm read-more effect effect-2 border-0" href="https://diemnhan.com/tuyen-dung/nhan-vien-media" title="CHUYÊN VIÊN MEDIA">Xem chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--//Loop-->
+                
+                <!--Loop-->
+                <div class="card shadow-0 border-0 rounded-3 mb-3">
+                    <div class="p-1 p-sm-2 p-md-3 card-body">
+                        <div class="row">
+                            <div class="col-3 col-md-3 col-lg-3 mb-4 mb-lg-0">
+                                <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                                    <a href="https://diemnhan.com/tuyen-dung/nhan-vien-marketing-offline" title="CHUYÊN VIÊN TRADE MARKETING"><img width="550" height="366" src="https://cdn.diemnhangroup.com/diemnhan/2020/08/mo-ta-cong-viec-nhan-vien-marketing.jpg" class="w-100" alt="&#039;.get_the_title().&#039;" loading="lazy" srcset="https://cdn.diemnhangroup.com/diemnhan/2020/08/mo-ta-cong-viec-nhan-vien-marketing-300x200.jpg 300w, https://cdn.diemnhangroup.com/diemnhan/2020/08/mo-ta-cong-viec-nhan-vien-marketing.jpg 550w" sizes="(max-width: 550px) 100vw, 550px" />                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-9 col-md-6 col-lg-6">
+                                <h4 class="d-inline title">
+                                    <a href="https://diemnhan.com/tuyen-dung/nhan-vien-marketing-offline" title="CHUYÊN VIÊN TRADE MARKETING">CHUYÊN VIÊN TRADE MARKETING</a>
+                                </h4>
+                                <span class="d-inline dng-bookmark"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
+                                        <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z" />
+                                    </svg>&nbsp;Full Time</span>
+                                <div class="mt-1 mb-0 text-muted small">
+                                    <span class="dng-block-item position">(2 Vị trí)</span>&nbsp;
+                                    <span class="dng-block-item wage"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                                            <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z" />
+                                        </svg>&nbsp;Thỏa thuận</span>&nbsp;&nbsp;
+                                    <span class="dng-block-item date"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                                        </svg>&nbsp;30-09-2023</span>
+                                </div>
+                            </div>
+                            <div class="d-none d-sm-block col-md-3 col-lg-3">
+                                <div class="d-flex flex-column">
+                                    <a class="btn btn-primary btn-sm read-more effect effect-2 border-0" href="https://diemnhan.com/tuyen-dung/nhan-vien-marketing-offline" title="CHUYÊN VIÊN TRADE MARKETING">Xem chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--//Loop-->
+                
+                <!--Loop-->
+                <div class="card shadow-0 border-0 rounded-3 mb-3">
+                    <div class="p-1 p-sm-2 p-md-3 card-body">
+                        <div class="row">
+                            <div class="col-3 col-md-3 col-lg-3 mb-4 mb-lg-0">
+                                <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                                    <a href="https://diemnhan.com/tuyen-dung/graphic-designer" title="GRAPHIC DESIGNER"><img width="2048" height="2048" src="https://cdn.diemnhangroup.com/diemnhan/2020/08/1-1.png" class="w-100" alt="&#039;.get_the_title().&#039;" loading="lazy" srcset="https://cdn.diemnhangroup.com/diemnhan/2020/08/1-1-300x300.png 300w, https://cdn.diemnhangroup.com/diemnhan/2020/08/1-1-1024x1024.png 1024w, https://cdn.diemnhangroup.com/diemnhan/2020/08/1-1-150x150.png 150w, https://cdn.diemnhangroup.com/diemnhan/2020/08/1-1-768x768.png 768w, https://cdn.diemnhangroup.com/diemnhan/2020/08/1-1-1536x1536.png 1536w, https://cdn.diemnhangroup.com/diemnhan/2020/08/1-1.png 2048w" sizes="(max-width: 2048px) 100vw, 2048px" />                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-9 col-md-6 col-lg-6">
+                                <h4 class="d-inline title">
+                                    <a href="https://diemnhan.com/tuyen-dung/graphic-designer" title="GRAPHIC DESIGNER">GRAPHIC DESIGNER</a>
+                                </h4>
+                                <span class="d-inline dng-bookmark"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
+                                        <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z" />
+                                    </svg>&nbsp;Full Time</span>
+                                <div class="mt-1 mb-0 text-muted small">
+                                    <span class="dng-block-item position">(3 Vị trí)</span>&nbsp;
+                                    <span class="dng-block-item wage"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                                            <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z" />
+                                        </svg>&nbsp;13.000.000 - 18.000.000 VNĐ</span>&nbsp;&nbsp;
+                                    <span class="dng-block-item date"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                                        </svg>&nbsp;30-09-2023</span>
+                                </div>
+                            </div>
+                            <div class="d-none d-sm-block col-md-3 col-lg-3">
+                                <div class="d-flex flex-column">
+                                    <a class="btn btn-primary btn-sm read-more effect effect-2 border-0" href="https://diemnhan.com/tuyen-dung/graphic-designer" title="GRAPHIC DESIGNER">Xem chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--//Loop-->
+                
+                <!--Loop-->
+                <div class="card shadow-0 border-0 rounded-3 mb-3">
+                    <div class="p-1 p-sm-2 p-md-3 card-body">
+                        <div class="row">
+                            <div class="col-3 col-md-3 col-lg-3 mb-4 mb-lg-0">
+                                <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                                    <a href="https://diemnhan.com/tuyen-dung/tro-ly-tong-giam-doc-mang-marketing" title="TRỢ LÝ TRƯỞNG PHÒNG THƯƠNG HIỆU"><img width="1000" height="563" src="https://cdn.diemnhangroup.com/diemnhan/2022/08/mona-media-want-you-1000x563-1.png" class="w-100" alt="&#039;.get_the_title().&#039;" loading="lazy" srcset="https://cdn.diemnhangroup.com/diemnhan/2022/08/mona-media-want-you-1000x563-1-300x169.png 300w, https://cdn.diemnhangroup.com/diemnhan/2022/08/mona-media-want-you-1000x563-1-768x432.png 768w, https://cdn.diemnhangroup.com/diemnhan/2022/08/mona-media-want-you-1000x563-1.png 1000w" sizes="(max-width: 1000px) 100vw, 1000px" />                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-9 col-md-6 col-lg-6">
+                                <h4 class="d-inline title">
+                                    <a href="https://diemnhan.com/tuyen-dung/tro-ly-tong-giam-doc-mang-marketing" title="TRỢ LÝ TRƯỞNG PHÒNG THƯƠNG HIỆU">TRỢ LÝ TRƯỞNG PHÒNG THƯƠNG HIỆU</a>
+                                </h4>
+                                <span class="d-inline dng-bookmark"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
+                                        <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z" />
+                                    </svg>&nbsp;Full Time</span>
+                                <div class="mt-1 mb-0 text-muted small">
+                                    <span class="dng-block-item position">(1 Vị trí)</span>&nbsp;
+                                    <span class="dng-block-item wage"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                                            <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z" />
+                                        </svg>&nbsp;12.000.000 - 20.000.000 VNĐ</span>&nbsp;&nbsp;
+                                    <span class="dng-block-item date"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                                        </svg>&nbsp;30-09-2023</span>
+                                </div>
+                            </div>
+                            <div class="d-none d-sm-block col-md-3 col-lg-3">
+                                <div class="d-flex flex-column">
+                                    <a class="btn btn-primary btn-sm read-more effect effect-2 border-0" href="https://diemnhan.com/tuyen-dung/tro-ly-tong-giam-doc-mang-marketing" title="TRỢ LÝ TRƯỞNG PHÒNG THƯƠNG HIỆU">Xem chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--//Loop-->
+                
+                <!--Loop-->
+                <div class="card shadow-0 border-0 rounded-3 mb-3">
+                    <div class="p-1 p-sm-2 p-md-3 card-body">
+                        <div class="row">
+                            <div class="col-3 col-md-3 col-lg-3 mb-4 mb-lg-0">
+                                <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                                    <a href="https://diemnhan.com/tuyen-dung/talent-dai-dien-hinh-anh" title="TALENT (ĐẠI DIỆN HÌNH ẢNH)"><img width="1920" height="1080" src="https://cdn.diemnhangroup.com/diemnhan/2023/03/hinh-3.jpg" class="w-100" alt="&#039;.get_the_title().&#039;" loading="lazy" srcset="https://cdn.diemnhangroup.com/diemnhan/2023/03/hinh-3-300x169.jpg 300w, https://cdn.diemnhangroup.com/diemnhan/2023/03/hinh-3-1024x576.jpg 1024w, https://cdn.diemnhangroup.com/diemnhan/2023/03/hinh-3-768x432.jpg 768w, https://cdn.diemnhangroup.com/diemnhan/2023/03/hinh-3-1536x864.jpg 1536w, https://cdn.diemnhangroup.com/diemnhan/2023/03/hinh-3.jpg 1920w" sizes="(max-width: 1920px) 100vw, 1920px" />                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-9 col-md-6 col-lg-6">
+                                <h4 class="d-inline title">
+                                    <a href="https://diemnhan.com/tuyen-dung/talent-dai-dien-hinh-anh" title="TALENT (ĐẠI DIỆN HÌNH ẢNH)">TALENT (ĐẠI DIỆN HÌNH ẢNH)</a>
+                                </h4>
+                                <span class="d-inline dng-bookmark"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
+                                        <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z" />
+                                    </svg>&nbsp;Full Time</span>
+                                <div class="mt-1 mb-0 text-muted small">
+                                    <span class="dng-block-item position">(1 Vị trí)</span>&nbsp;
+                                    <span class="dng-block-item wage"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                                            <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z" />
+                                        </svg>&nbsp;10.000.000 - 15.000.000 đồng</span>&nbsp;&nbsp;
+                                    <span class="dng-block-item date"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                                        </svg>&nbsp;30-09-2023</span>
+                                </div>
+                            </div>
+                            <div class="d-none d-sm-block col-md-3 col-lg-3">
+                                <div class="d-flex flex-column">
+                                    <a class="btn btn-primary btn-sm read-more effect effect-2 border-0" href="https://diemnhan.com/tuyen-dung/talent-dai-dien-hinh-anh" title="TALENT (ĐẠI DIỆN HÌNH ẢNH)">Xem chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--//Loop-->
+                        </div>
+    </div>
+</div>            <!--//Jobs related-->
+        </div>
+        <div class="col col-12 col-sm-4 col-xs-12">
+            <div class="card shadow-0 border rounded-3 sticky-top">
+                <div class="card-body">
+                    <div class="portfolio-top">
+	<div class="row tp-dich-vu">
+		<div class="siderbar-dich-vu">
+			<div class="single__sidebar">
+      </div>			<div class="portfolio-summary entry-summary">
+				<div class="mb-3"><h4><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-primary bi bi-geo-alt-fill" viewBox="0 0 16 16">
+  <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+</svg> Nơi làm việc</h4><span class="noi-lam-viec" data-id="48"><ul class ="lisst-store-fonte1"><li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Tân phú </a></li></ul></span></div><div class="mb-3"><h4><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-primary bi bi-currency-dollar" viewBox="0 0 16 16">
+  <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
+</svg> Mức lương </h4><span class="muc-luong">10.000.000-15.000.000</span></div><div class="mb-3"><h4 ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-primary bi bi-person-vcard-fill" viewBox="0 0 16 16">
+  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm9 1.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4a.5.5 0 0 0-.5.5ZM9 8a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4A.5.5 0 0 0 9 8Zm1 2.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5Zm-1 2C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 0 2 13h6.96c.026-.163.04-.33.04-.5ZM7 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0Z"/>
+</svg> Bộ phận chuyên môn</h4><span class = "bo-phan" data-id="115">Marketing</span></div><div class="mb-3"><h4><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-primary bi bi-star-fill" viewBox="0 0 16 16">
+  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+</svg> Vị trí tuyển dụng</h4><span class = "vi-tri-tuyen-dung" data-id="Dựng Phim">Dựng Phim</span></div><div class="mb-3"><h4><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-primary bi bi-star-fill" viewBox="0 0 16 16">
+  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+</svg> Hình thức làm việc</h4><span class="hinh-thuc" data-id="13">Full Time</span></div><div class="mb-3"><h4><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-primary bi bi-gear-fill" viewBox="0 0 16 16">
+  <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+</svg> Số lượng tuyển</h4><span>1 người</span></div><div class="mb-3"><h4><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-primary bi bi-gear-fill" viewBox="0 0 16 16">
+  <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+</svg> Yêu cầu kinh nghiệm</h4><span>1 năm</span></div><div class="mb-3"><h4><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-primary bi bi-envelope-fill" viewBox="0 0 16 16">
+  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+</svg> Email nhận hồ sơ</h4><span><a href="mailto:nhansu@diemnhan.net" rel="nofollow" target="_blank">nhansu@diemnhan.net</a></span></div><div class="mb-3"><h4><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-primary bi bi-calendar-check" viewBox="0 0 16 16">
+  <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+</svg> Hạn nộp hồ sơ</h4><span class="han-nop-hs" data-id="22-09-2023">31-10-2022</span></div>				<div class="d-flex justify-content-center">
+					<a class="btn btn-primary btn-lg read-more btn-submit-cv-details btn-submit-cv3 arounded-3 text-white" href="/dang-ho-so"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cursor-fill" viewBox="0 0 16 16">
+							<path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z" />
+						</svg><span>&nbsp;Nộp hồ sơ</span></a>
+				</div>
+			</div>
+		</div>
+		<div id="portfolio-content" class="large-8 col col-first col-divided" role="main">
+			<div class="portfolio-inner">
+				<div class="nop-ho-so">
+					<form action="/dang-ho-so" method="POST" id="submit_frm_tuyendung" accept-charset="utf-8">
+						<input type="hidden" name="bo_phan" value="115">
+						<input type="hidden" name="vitri_tuyendung" value="Dựng Phim">
+						<input type="hidden" name="muc_luong" value="10.000.000-15.000.000">
+						<input type="hidden" name="hinhthuc" value="13">
+						<input type="hidden" name="vitri_lamviec" value="48">
+						<input type="hidden" name="web_wish_adress" value="Hồ Chí Minh">
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>                </div>
+            </div>
+        </div>
+    </div>
+</div></main>
+<footer id="footer" class="footer-main">
+    <div class="container container-1240">
+        <div class="s-f-box">
+    <div class="f-box-img">
+        <img class="d-block mx-auto mb-4" width="300" height="57" src="https://diemnhan.com/wp-content/themes/diem-nhan/assets/images/logo-dng-white.png" alt="logo-main">
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-xl-4 order-1">
+        <div class="c-box mb-4 mb-xl-0">
+            <p class="title">TẬP ĐOÀN ĐIỂM NHẤN GROUP - CÔNG TY CP</p>
+            <p class="cb-item">
+                <svg width="15" height="21" viewBox="0 0 15 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.42578 19.8232C10.4297 17.3154 15 11.2373 15 7.82324C15 3.68262 11.6406 0.323242 7.5 0.323242C3.35938 0.323242 0 3.68262 0 7.82324C0 11.2373 4.57031 17.3154 6.57422 19.8232C7.05469 20.4209 7.94531 20.4209 8.42578 19.8232V19.8232ZM7.5 10.3232C6.12109 10.3232 5 9.20215 5 7.82324C5 6.44434 6.12109 5.32324 7.5 5.32324C8.87891 5.32324 10 6.44434 10 7.82324C10 9.20215 8.87891 10.3232 7.5 10.3232Z" fill="white" />
+                </svg>&nbsp;84 Nguyễn Háo Vĩnh, phường Tân Quý, Quận Tân Phú, Thành Phố Hồ Chí Minh
+            </p>
+            <p class="cb-item">
+                <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.44141 1.28408C6.14062 0.557521 5.34766 0.170803 4.58984 0.377834L1.15234 1.31533C0.472656 1.50283 0 2.12002 0 2.82315C0 12.4872 7.83594 20.3231 17.5 20.3231C18.2031 20.3231 18.8203 19.8505 19.0078 19.1708L19.9453 15.7333C20.1523 14.9755 19.7656 14.1825 19.0391 13.8817L15.2891 12.3192C14.6523 12.0536 13.9141 12.2372 13.4805 12.7724L11.9023 14.6981C9.15234 13.3974 6.92578 11.1708 5.625 8.4208L7.55078 6.84658C8.08594 6.40908 8.26953 5.67471 8.00391 5.03799L6.44141 1.28799V1.28408Z" fill="white" />
+                </svg>&nbsp;Số điện thoại: <a href="tel:028 730 999 79" target="_blank" rel="nofollow">028 730 999 79</a>
+            </p>
+            <p class="cb-item mb-0">
+                <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19.0273 0.18457H0.971788C0.587674 0.18457 0.277344 0.4949 0.277344 0.879015V14.7679C0.277344 15.152 0.587674 15.4623 0.971788 15.4623H19.0273C19.4115 15.4623 19.7218 15.152 19.7218 14.7679V0.879015C19.7218 0.4949 19.4115 0.18457 19.0273 0.18457ZM17.2739 2.54785L10.4271 7.87554C10.2578 8.00792 10.0213 8.00792 9.852 7.87554L3.00304 2.54785C2.97722 2.52793 2.95828 2.50042 2.94888 2.46919C2.93948 2.43797 2.94009 2.40458 2.95062 2.37371C2.96114 2.34285 2.98107 2.31605 3.00759 2.29707C3.03412 2.2781 3.06591 2.2679 3.09852 2.2679H17.1784C17.211 2.2679 17.2428 2.2781 17.2693 2.29707C17.2958 2.31605 17.3158 2.34285 17.3263 2.37371C17.3368 2.40458 17.3374 2.43797 17.328 2.46919C17.3186 2.50042 17.2997 2.52793 17.2739 2.54785Z" fill="white" />
+                </svg>&nbsp;Email: <a href="mailto:info@diemnhan.com" target="_blank" rel="nofollow">info@diemnhan.com</a>
+            </p>
+        </div>
+    </div>
+    <div class="col-12 col-xl-25 order-2">
+        <div class="c-box mb-4 mb-xl-0">
+            <p class="title text-uppercase">THỜI GIAN LÀM VIỆC</p>
+            <ul class="list-unstyled text-white mb-0 time-work">
+                <li class="mb-3">
+                    <p class="mb-2">Khối văn phòng:</p>
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <p class="m-0"><strong class="fw-600">Sáng: 7:00 - 12:00</strong></p>
+                            <p class="m-0"><strong class="fw-600">Chiều: 13:30 - 17:00</strong></p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p class="mb-2">Khối dịch vụ:</p>
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <p class="m-0"><strong class="fw-600">8:00 - 20:00</strong></p>
+                            <p class="m-0"><strong class="fw-600">tất cả các ngày trong tuần</strong></p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-12 col-xl-25 order-4 order-xl-3">
+        <div class="c-box mb-4 mb-xl-0">
+            <p class="title text-uppercase f--follow">THEO DÕI CHÚNG TÔI TẠI</p>
+                <iframe loading="lazy" src="about:blank" width="300" height="450" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" data-rocket-lazyload="fitvidscompatible" data-lazy-src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FTapdoandiemnhangroup&#038;tabs=tinnhanw&#038;width=300&#038;height=450&#038;small_header=false&#038;adapt_container_width=false&#038;hide_cover=false&#038;show_facepile=false&#038;appId"></iframe><noscript><iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FTapdoandiemnhangroup&tabs=tinnhanw&width=300&height=450&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=false&appId" width="300" height="450" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe></noscript>
+            <p class="box-item"><a href="/he-thong-chi-nhanh">Xem hệ thống chi nhánh</a></p>
+        </div>
+    </div>
+    <div class="col-12 col-xl-25 order-3 order-xl-4">
+        <div class="c-box f-register mb-4 mb-xl-0">
+            <p class="title text-uppercase">ĐĂNG KÝ NHẬN TIN NHẮN</p>
+            <div id="form-register" class="newsletters text-white">
+    <form class="newsletter-form needs-validation" novalidate>
+        <div class="form-group mb-3 mb-lg-4 position-relative">
+            <label for="name-news" class="form-label position-absolute">Họ và tên</label>
+            <input type="text" class="form-control bg-transparent" id="name-news" placeholder="" name="nameNews"
+                required>
+        </div>
+
+        <div class="form-group mb-3 mb-lg-4 position-relative">
+            <label for="email-news" class="form-label position-absolute">Email</label>
+            <input type="email" class="form-control bg-transparent" id="email-news" placeholder="" name="emailNews"
+                required>
+        </div>
+
+        <button type="submit" class="btn btn-white mx-auto d-block bg-transparent ">Gửi thông tin</button>
+        <div id="success-message" class="d-none alert alert-success mt-3" role="alert">
+            Đăng ký nhận tin thành công!
+        </div>
+    </form>
+</div>        </div>
+    </div>
+</div>
+<span class="go-to-top"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+    <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"></path>
+</svg></span>    </div>
+</footer>
+<script data-minify="1" type='text/javascript' src='https://diemnhan.com/wp-content/cache/min/1/wp-content/themes/diem-nhan/assets/js/main.js?ver=1695283312' id='main-js'></script>
+<script data-minify="1" type='text/javascript' src='https://diemnhan.com/wp-content/cache/min/1/wp-content/themes/diem-nhan/assets/js/newsleter-form.js?ver=1695283236' id='newsleter-form-js'></script>
+<script>window.lazyLoadOptions={elements_selector:"iframe[data-lazy-src]",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}};window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(var i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="https://diemnhan.com/wp-content/plugins/wp-rocket/assets/js/lazyload/17.5/lazyload.min.js"></script><script>function lazyLoadThumb(e){var t='<img src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360">',a='<button class="play" aria-label="play Youtube video"></button>';return t.replace("ID",e)+a}function lazyLoadYoutubeIframe(){var e=document.createElement("iframe"),t="ID?autoplay=1";t+=0===this.parentNode.dataset.query.length?'':'&'+this.parentNode.dataset.query;e.setAttribute("src",t.replace("ID",this.parentNode.dataset.src)),e.setAttribute("frameborder","0"),e.setAttribute("allowfullscreen","1"),e.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"),this.parentNode.parentNode.replaceChild(e,this.parentNode)}document.addEventListener("DOMContentLoaded",function(){var e,t,p,a=document.getElementsByClassName("rll-youtube-player");for(t=0;t<a.length;t++)e=document.createElement("div"),e.setAttribute("data-id",a[t].dataset.id),e.setAttribute("data-query", a[t].dataset.query),e.setAttribute("data-src", a[t].dataset.src),e.innerHTML=lazyLoadThumb(a[t].dataset.id),a[t].appendChild(e),p=e.querySelector('.play'),p.onclick=lazyLoadYoutubeIframe});</script></body>
+</html>
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me -->
